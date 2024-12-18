@@ -1,0 +1,100 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Arrendador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+  <ion-content [fullscreen]="true" class="ion-padding">
+
+
+
+    <ion-button expand="block" (click)="setOpen(true)">Registrar Estacionamiento</ion-button>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Registrar Estacionamiento</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen(false)">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+
+
+    <!-- Formulario para el estacionamiento -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Datos del Estacionamiento</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Ubicación</ion-label>
+
+          <ion-button expand="full" (click)="openMap()">Buscar en el Mapa</ion-button>
+
+          <div *ngIf="selectedAddress">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>Dirección Seleccionada</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                {{ selectedAddress }}
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+
+
+
+        </ion-item>
+       
+      </ion-card-content>
+    </ion-card>
+  
+    <!-- Botón desplegable para datos del propietario -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Datos del Propietario</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="owner.name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Rut</ion-label>
+          <ion-input [(ngModel)]="owner.rut"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Teléfono</ion-label>
+          <ion-input [(ngModel)]="owner.phone" type="tel"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Foto de Perfil</ion-label>
+          <ion-button (click)="selectImage()">Seleccionar Imagen</ion-button>
+        </ion-item>
+        <ion-img *ngIf="owner.photo" [src]="owner.photo" alt="Foto de perfil"></ion-img>
+      </ion-card-content>
+    </ion-card>
+  
+    <!-- Botón para enviar -->
+    <ion-footer>
+      <ion-button id="open-toast" expand="full" (click)="setOpen(false)">Registrar Estacionamiento</ion-button>
+      <ion-toast trigger="open-toast" message="Estacionamiento registrado con exito" [duration]="5000"></ion-toast>
+   
+    </ion-footer>
+
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+
+  </ion-content>

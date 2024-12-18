@@ -1,0 +1,50 @@
+<ion-content class="ion-padding">
+  <ion-button id="open-modal">Registrar Estacionamiento</ion-button>
+  <p>{{ message }}</p>
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>registro de estacionamiento</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+          <ion-card-content>
+        <h1> 
+          
+          <label >Novedades:</label>
+          <ion-input  
+          fill="solid"
+          ></ion-input>
+          <label>Problemas:</label>
+          <ion-input  
+          fill="solid"
+          ></ion-input>
+          <div>Enviar foto:         
+           <ion-button   (click)="tomarFoto()">
+            Tomar Foto
+          </ion-button>
+            
+          </div>
+        </h1>
+        </ion-card-content>
+
+
+          <div *ngIf="photo" class="image-preview">
+          <img [src]="photo" alt="Foto capturada" />
+        </div>
+
+        <ion-button expand="block" (click)="presentToast('bottom')">Enviar Reporte</ion-button>
+
+
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
